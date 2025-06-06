@@ -418,7 +418,7 @@
           total += parsePrice(item.price);
         });
 
-        const pix = new Pix("caene@ene.unb.br", "Pagamento Teste", "Diogo Godinho Schwartz", "Brasilia", "txid123", total);
+        const pix = new Pix("pedrohenrique.godinho@enetec.unb.br", "Pagamento", "Pedro Henrique Godinho", "Brasilia", "txid123", total);
         pixCode.value = pix.getPayload();
         valorPix.textContent = `R$${total.toFixed(2)}`;
         modal.style.display = "none";
