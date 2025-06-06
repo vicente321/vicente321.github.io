@@ -33,5 +33,5 @@ const listaProdutos = [
   ["https://caene-unb.github.io/geladeira-unb/imgs/snickersDark.webp", "Snickers Dark", "", "DOCES", "5.00"],
   ["https://caene-unb.github.io/geladeira-unb/imgs/snickersPeMoleque.webp", "Snickers Pé de Moleque", "", "DOCES", "5.00"],
   ["https://caene-unb.github.io/geladeira-unb/imgs/balinhaAzeinha.jpg", "Azedinha", "Drops azedinho sabor Uva", "DOCES", "1.50"],
-  ["https://caene-unb.github.io/geladeira-unb/imgs/cafeCapsula.webp", "Café Cápsula", "", "CAFÉ", "2.50"],
+  ["https://caene-unb.github.io/geladeira-unb/imgs/cafeCapsula.webp", "Café Cápsula", "", "CHÁ", "2.50"],
 ];
