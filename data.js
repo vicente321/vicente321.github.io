@@ -1,10 +1,10 @@
 const listaProdutos = [
-  ["https://caene-unb.github.io/geladeira-unb/imgs/moster_black.webp", "Monster Original", "Sabor original com muita força e energia", "ENERGÉTICO", "9.00"],
-  ["https://caene-unb.github.io/geladeira-unb/imgs/monster_branco.webp", "Monster Ultra", "Com zero calorias e zero açúcar,", "ENERGÉTICO", "9.00"],
-  ["https://caene-unb.github.io/geladeira-unb/imgs/monster_mango_logo.webp", "Monster Mango Loco", "Com sabor doce e marcante e um toque especial de suco de manga", "ENERGÉTICO", "9.00"],
-  ["https://caene-unb.github.io/geladeira-unb/imgs/monster_watermelon.webp", "Monster Ultra Wattermellow", "Sabor intenso de melancia que proporciona uma sensação refrescante;", "ENERGÉTICO", "9.00"],
-  ["https://caene-unb.github.io/geladeira-unb/imgs/monster_pipeline_punch.webp", "Monster Pipeline Punch", "O energético de sabor exótico, único, numa perfeita combinação dos sabores da goiaba, laranja e maracujá.", "ENERGÉTICO", "9.00"],
-  ["https://caene-unb.github.io/geladeira-unb/imgs/monster_pacific_punch.webp", "Monster Pacific Punch", "Sabor tropical que é leve, suave e o toque perfeito de doce", "ENERGÉTICO", "9.00"],
+  ["https://caene-unb.github.io/geladeira-unb/imgs/moster_black.webp", "Monster Original", "Sabor original com muita força e energia", "ENERGÉTICO", "7.40"],
+  ["https://caene-unb.github.io/geladeira-unb/imgs/monster_branco.webp", "Monster Ultra", "Com zero calorias e zero açúcar,", "ENERGÉTICO", "7.40"],
+  ["https://caene-unb.github.io/geladeira-unb/imgs/monster_mango_logo.webp", "Monster Mango Loco", "Com sabor doce e marcante e um toque especial de suco de manga", "ENERGÉTICO", "7.40"],
+  ["https://caene-unb.github.io/geladeira-unb/imgs/monster_watermelon.webp", "Monster Ultra Wattermellow", "Sabor intenso de melancia que proporciona uma sensação refrescante;", "ENERGÉTICO", "7.40"],
+  ["https://caene-unb.github.io/geladeira-unb/imgs/monster_pipeline_punch.webp", "Monster Pipeline Punch", "O energético de sabor exótico, único, numa perfeita combinação dos sabores da goiaba, laranja e maracujá.", "ENERGÉTICO", "7.40"],
+  ["https://caene-unb.github.io/geladeira-unb/imgs/monster_pacific_punch.webp", "Monster Pacific Punch", "Sabor tropical que é leve, suave e o toque perfeito de doce", "ENERGÉTICO", "7.40"],
   ["https://caene-unb.github.io/geladeira-unb/imgs/paçoca.webp", "Paçoquinha", "", "DOCES", "1.00"],
   ["https://caene-unb.github.io/geladeira-unb/imgs/kitkat_dark.webp", "KitKat Dark", "", "DOCES", "4.50"],
   ["https://caene-unb.github.io/geladeira-unb/imgs/kitkat_tradicional.webp", "KitKat Tradicional", "", "DOCES", "4.50"],
@@ -33,5 +33,5 @@ const listaProdutos = [
   ["https://caene-unb.github.io/geladeira-unb/imgs/snickersDark.webp", "Snickers Dark", "", "DOCES", "5.00"],
   ["https://caene-unb.github.io/geladeira-unb/imgs/snickersPeMoleque.webp", "Snickers Pé de Moleque", "", "DOCES", "5.00"],
   ["https://caene-unb.github.io/geladeira-unb/imgs/balinhaAzeinha.jpg", "Azedinha", "Drops azedinho sabor Uva", "DOCES", "1.50"],
-  ["https://caene-unb.github.io/geladeira-unb/imgs/cafeCapsula.webp", "Café Cápsula", "", "CHÁ", "2.50"],
+  ["https://caene-unb.github.io/geladeira-unb/imgs/cafeCapsula.webp", "Café Cápsula", "", "CHÁ", "3.50"],
 ];
