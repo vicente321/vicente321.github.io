@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geladeira do CAENE</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --azul-caene: #00062F;
+      --verde: #28a745;
+      --branco: #ffffff;
+      --cinza: #f4f4f4;
+      --cinza-escuro: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--cinza);
+      padding-bottom: 60px;
+    }
+
+    header {
+      background-color: var(--azul-caene);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      color: var(--branco);
+    }
+
+    header img {
+      height: 45px;
+      margin-right: 12px;
+    }
+
+    header h1 {
+      font-size: 22px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2em 1em;
+    }
+
+    .menu-group-heading {
+      margin-bottom: 1em;
+      font-size: 20px;
+      color: var(--azul-caene);
+      border-bottom: 3px solid var(--azul-caene);
+      padding-bottom: 0.5em;
+    }
+
+    .menu-group {
+      display: grid;
+      gap: 1.5em;
+      grid-template-columns: 1fr;
+    }
+
+    @media screen and (min-width: 768px) {
+      .menu-group {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .menu-item {
+      display: flex;
+      background-color: var(--branco);
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-item-text {
+      flex: 1;
+      /* Faz o texto ocupar todo o espaço possível */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-item-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-right: 1em;
+    }
+
+    .menu-item-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-item-name {
+      font-weight: 600;
+      margin-right: 30px;
+    }
+
+    .menu-item-price {
+      font-weight: bold;
+      color: var(--azul-caene);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      /* espaço entre preço e botão */
+    }
+
+    .menu-item-desc {
+      margin-top: 6px;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    .add-to-cart-btn {
+      background: none;
+      border: none;
+      color: var(--verde);
+      font-size: 18px;
+      margin-left: 8px;
+      cursor: pointer;
+    }
+
+    .add-to-cart-btn:hover {
+      color: #1e7e34;
+    }
+
+    .cart-button {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--azul-caene);
+      color: var(--branco);
+      border: none;
+      padding: 16px;
+      font-size: 18px;
+      text-align: center;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      overflow: auto;
+    }
+
+    .modal-content {
+      background-color: var(--branco);
+      margin: 10% auto;
+      padding: 24px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      color: var(--azul-caene);
+    }
+
+    .modal-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .modal-buttons button,
+    .modal-buttons a,
+    .btn-copiar {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--branco);
+      text-align: center;
+      text-decoration: none;
+      background-color: var(--azul-caene);
+    }
+
+    #pixModal textarea {
+      width: 100%;
+      height: 100px;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="https://img.icons8.com/fluency/48/fridge.png" alt="Logo Geladeira">
+    <h1>Geladeira do CAENE</h1>
+  </header>
+
+  <main class="container" id="menu-container"></main>
+
+
+  <button class="cart-button" id="openCart">🛒 Ver Carrinho</button>
+
+  <div id="cartModal" class="modal">
+    <div class="modal-content">
+      <h3>Seu Carrinho</h3>
+      <ul id="cartList"></ul>
+      <p><strong>Total:</strong> <span id="cartTotal">R$0,00</span></p>
+      <div class="modal-buttons">
+        <button class="btn-clear" id="clearCart">Limpar</button>
+        <button class="btn-link" id="finalizarCompra">Finalizar Compra</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="pixModal" class="modal">
+    <div class="modal-content">
+      <h3>Valor Total: <span id="valorPix"></span></h3>
+      <textarea id="pixCode" readonly></textarea>
+      <button class="btn-copiar" id="copiarPix">Copiar Código Pix</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    const produtos = listaProdutos.map(item => ({
+        imagem: item[0],
+        nome: item[1],
+        descricao: item[2],
+        categoria: item[3],
+        preco: item[4]
+      }));
+  
+      const categoriasSeparadas = {};
+      produtos.forEach(prod => {
+        if (!categoriasSeparadas[prod.categoria]) {
+          categoriasSeparadas[prod.categoria] = [];
+        }
+        categoriasSeparadas[prod.categoria].push(prod);
+      });
+  
+      const container = document.getElementById("menu-container");
+  
+      for (const categoria in categoriasSeparadas) {
+        const h2 = document.createElement("h2");
+        h2.className = "menu-group-heading";
+        h2.textContent = categoria;
+        container.appendChild(h2);
+  
+        const groupDiv = document.createElement("div");
+        groupDiv.className = "menu-group";
+  
+        categoriasSeparadas[categoria].forEach(item => {
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "menu-item";
+          itemDiv.innerHTML = `
+            <img src="${item.imagem}" alt="${item.nome}" class="menu-item-img" />
+            <div class="menu-item-text">
+              <div class="menu-item-heading">
+                <span class="menu-item-name">${item.nome}</span>
+                <span class="menu-item-price">R$${item.preco}
+                  <button class="add-to-cart-btn" title="Adicionar ao carrinho">
+                    <i class="fas fa-cart-plus"></i>
+                  </button>
+                </span>
+              </div>
+              <p class="menu-item-desc">${item.descricao}</p>
+            </div>
+          `;
+          groupDiv.appendChild(itemDiv);
+        });
+  
+        container.appendChild(groupDiv);
+      }
+
+    class Pix {
+      constructor(pixKey, description, merchantName, merchantCity, txid, amount) {
+        this.pixKey = pixKey;
+        this.description = description;
+        this.merchantName = merchantName;
+        this.merchantCity = merchantCity;
+        this.txid = txid;
+        this.amount = parseFloat(amount).toFixed(2);
+        this.ID_PAYLOAD_FORMAT_INDICATOR = "00";
+        this.ID_MERCHANT_ACCOUNT_INFORMATION = "26";
+        this.ID_MERCHANT_ACCOUNT_INFORMATION_GUI = "00";
+        this.ID_MERCHANT_ACCOUNT_INFORMATION_KEY = "01";
+        this.ID_MERCHANT_ACCOUNT_INFORMATION_DESCRIPTION = "02";
+        this.ID_MERCHANT_CATEGORY_CODE = "52";
+        this.ID_TRANSACTION_CURRENCY = "53";
+        this.ID_TRANSACTION_AMOUNT = "54";
+        this.ID_COUNTRY_CODE = "58";
+        this.ID_MERCHANT_NAME = "59";
+        this.ID_MERCHANT_CITY = "60";
+        this.ID_ADDITIONAL_DATA_FIELD_TEMPLATE = "62";
+        this.ID_ADDITIONAL_DATA_FIELD_TEMPLATE_TXID = "05";
+        this.ID_CRC16 = "63";
+      }
+      _getValue(id, value) {
+        const size = String(value.length).padStart(2, "0");
+        return id + size + value;
+      }
+      _getMechantAccountInfo() {
+        const gui = this._getValue(this.ID_MERCHANT_ACCOUNT_INFORMATION_GUI, "br.gov.bcb.pix");
+        const key = this._getValue(this.ID_MERCHANT_ACCOUNT_INFORMATION_KEY, this.pixKey);
+        const description = this._getValue(this.ID_MERCHANT_ACCOUNT_INFORMATION_DESCRIPTION, this.description);
+        return this._getValue(this.ID_MERCHANT_ACCOUNT_INFORMATION, gui + key + description);
+      }
+      _getAdditionalDataFieldTemplate() {
+        const txid = this._getValue(this.ID_ADDITIONAL_DATA_FIELD_TEMPLATE_TXID, this.txid);
+        return this._getValue(this.ID_ADDITIONAL_DATA_FIELD_TEMPLATE, txid);
+      }
+      getPayload() {
+        const payload =
+          this._getValue(this.ID_PAYLOAD_FORMAT_INDICATOR, "01") +
+          this._getMechantAccountInfo() +
+          this._getValue(this.ID_MERCHANT_CATEGORY_CODE, "0000") +
+          this._getValue(this.ID_TRANSACTION_CURRENCY, "986") +
+          this._getValue(this.ID_TRANSACTION_AMOUNT, this.amount) +
+          this._getValue(this.ID_COUNTRY_CODE, "BR") +
+          this._getValue(this.ID_MERCHANT_NAME, this.merchantName) +
+          this._getValue(this.ID_MERCHANT_CITY, this.merchantCity) +
+          this._getAdditionalDataFieldTemplate();
+        return payload + this._getCRC16(payload);
+      }
+      _getCRC16(payload) {
+        function ord(str) { return str.charCodeAt(0); }
+        function dechex(number) {
+          if (number < 0) number = 0xffffffff + number + 1;
+          return number.toString(16);
+        }
+        payload = payload + this.ID_CRC16 + "04";
+        let polinomio = 0x1021;
+        let resultado = 0xffff;
+        for (let offset = 0; offset < payload.length; offset++) {
+          resultado ^= ord(payload[offset]) << 8;
+          for (let bitwise = 0; bitwise < 8; bitwise++) {
+            if ((resultado <<= 1) & 0x10000) resultado ^= polinomio;
+            resultado &= 0xffff;
+          }
+        }
+        return this.ID_CRC16 + "04" + dechex(resultado).toUpperCase().padStart(4, '0');
+      }
+    }
+
+    const cart = [];
+    function parsePrice(priceString) {
+  const clean = priceString.replace(/[^\d.,]/g, "").replace(",", ".");
+  return parseFloat(clean);
+}
+    function updateModal() {
+      const cartList = document.getElementById("cartList");
+      const cartTotal = document.getElementById("cartTotal");
+      cartList.innerHTML = "";
+      let total = 0;
+      cart.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - ${item.price}`;
+        cartList.appendChild(li);
+        total += parsePrice(item.price);
+      });
+      cartTotal.textContent = `R$${total.toFixed(2)}`;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".add-to-cart-btn");
+      const modal = document.getElementById("cartModal");
+      const openCart = document.getElementById("openCart");
+      const clearCart = document.getElementById("clearCart");
+      const finalizarCompra = document.getElementById("finalizarCompra");
+      const pixModal = document.getElementById("pixModal");
+      const pixCode = document.getElementById("pixCode");
+      const valorPix = document.getElementById("valorPix");
+      const copiarPix = document.getElementById("copiarPix");
+
+      buttons.forEach(button => {
+        button.addEventListener("click", (event) => {
+          const menuItem = event.target.closest(".menu-item");
+          const name = menuItem.querySelector(".menu-item-name").textContent.trim();
+          const priceText = menuItem.querySelector(".menu-item-price").childNodes[0].textContent.trim();
+          cart.push({ name, price: priceText });
+        });
+      });
+
+      openCart.addEventListener("click", () => {
+        updateModal();
+        modal.style.display = "block";
+      });
+
+      clearCart.addEventListener("click", () => {
+        cart.length = 0;
+        updateModal();
+      });
+
+      finalizarCompra.addEventListener("click", () => {
+        let total = 0;
+        cart.forEach(item => {
+          total += parsePrice(item.price);
+        });
+
+        const pix = new Pix("caene@ene.unb.br", "Pagamento Teste", "Diogo Godinho Schwartz", "Brasilia", "txid123", total);
+        pixCode.value = pix.getPayload();
+        valorPix.textContent = `R$${total.toFixed(2)}`;
+        modal.style.display = "none";
+        pixModal.style.display = "block";
+      });
+
+      copiarPix.addEventListener("click", () => {
+        navigator.clipboard.writeText(pixCode.value);
+      });
+
+      window.addEventListener("click", (event) => {
+        if (event.target === modal) modal.style.display = "none";
+        if (event.target === pixModal) pixModal.style.display = "none";
+      });
+    });
+  </script>
+</body>
+
+</html>
