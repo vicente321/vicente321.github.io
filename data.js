@@ -13,4 +13,6 @@ const listaProdutos = [
   ["https://vicente321.github.io/imgs/Monster-Ultra-Paradise.png", "Monster Energy Ultra Paradise", "Sabor kiwi com maçã verde, zero açúcar. ", "ENERGÉTICO", "7.52"],
   ["https://vicente321.github.io/imgs/CCSA_LT_220ML.webp", "Coca Zero", "", "REFRIGERANTE", "2.40"],
   ["https://vicente321.github.io/imgs/110255_COCA---CCO220ml.webp", "Coca Lata", "", "REFRIGERANTE", "2.40"],
+  ["https://vicente321.github.io/imgs/110255_COCA---CCO220ml.webp", "Fanta Lata", "", "REFRIGERANTE", "2.40"],
+  ["https://vicente321.github.io/imgs/110255_COCA---CCO220ml.webp", "Agua com gas", "", "Agua", "1.65"],
 ];
